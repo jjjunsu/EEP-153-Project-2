@@ -1,4 +1,4 @@
-# EEP-153-Project-2
+# EEP 153 Project 2
 GitHub Repository for ENVECON 153 Project 2 – Team Margaret Reid
 
 ## Overview  
