@@ -13,7 +13,6 @@ This repository contains all materials and code related to our project for ENVEC
 - **Identify potential improvements** to prison diets that could enhance nutrition while maintaining cost efficiency.  
 
 ## Team Margaret Reid  
-
 | Name          | Email                      | GitHub Username  |  
 |--------------|----------------------------|------------------|  
 | **Nancy Zhu**   | nzhu@berkeley.edu          | ncyzhu |  
