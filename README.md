@@ -25,8 +25,8 @@ To run our analysis, clone this repository and follow the setup instructions in 
 
 | Name          | Email                      | GitHub Username  |  
 |--------------|----------------------------|------------------|  
-| **Nancy Zhu**   | nzhu@berkeley.edu          | [ncyzhu](https://github.com/ncyzhu) |  
-| **Elan Trager** | eitrager@berkeley.edu      | [eitrager](https://github.com/eitrager) |  
-| **Junsu Yi**    | yijunsu@berkeley.edu       | *(GitHub username not provided)* |  
-| **Misato Okamoto** | misato3310@berkeley.edu | [okamotomisato](https://github.com/okamotomisato) |  
-| **Cortez Rush** | crush2003@berkeley.edu     | [crush-55](https://github.com/crush-55) |  
+| **Nancy Zhu**   | nzhu@berkeley.edu          | ncyzhu |  
+| **Elan Trager** | eitrager@berkeley.edu      | eitrager |  
+| **Junsu Yi**    | yijunsu@berkeley.edu       | jjjunsu |  
+| **Misato Okamoto** | misato3310@berkeley.edu | okamotomisato |  
+| **Cortez Rush** | crush2003@berkeley.edu     | crush-55 |  
