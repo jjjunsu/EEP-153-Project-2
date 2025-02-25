@@ -12,15 +12,6 @@ This repository contains all materials and code related to our project for ENVEC
 - **Compare our findings with existing prison diets** to assess whether current meals meet dietary constraints.  
 - **Identify potential improvements** to prison diets that could enhance nutrition while maintaining cost efficiency.  
 
-## Repository Contents  
-- 📂 **Data** – Raw and processed datasets used for analysis.  
-- 💻 **Code** – Scripts for data processing, cost calculations, and analysis.  
-- 📄 **Reports** – Documentation and findings from our research.  
-- 📊 **Visualizations** – Graphs and charts summarizing key insights.  
-
-## Getting Started  
-To run our analysis, clone this repository and follow the setup instructions in `setup_instructions.md`.  
-
 ## Team Margaret Reid  
 
 | Name          | Email                      | GitHub Username  |  
