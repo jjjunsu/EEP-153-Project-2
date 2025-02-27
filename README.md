@@ -4,6 +4,9 @@ GitHub Repository for ENVECON 153 Project 2 – Team Margaret Reid
 ## Overview  
 This repository contains all materials and code related to our project for ENVECON 153. Our project investigates the diets provided to incarcerated individuals in the United States at both the state and federal levels. We aim to analyze the nutritional adequacy and cost efficiency of these diets while exploring potential improvements.  
 
+## Population of Interest
+This project is interested in finding the minimum-cost diet for incarcerated individuals across U.S. prisons, including county, state, and federal. We will examine differences across age groups and gender.
+
 ## Project Goals  
 
 ### Primary Objectives:  
