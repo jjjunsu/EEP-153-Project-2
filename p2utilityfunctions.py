@@ -234,23 +234,32 @@ def solvercomplete(sex, age,recipes, nutrients, bmin, bmax, data_url = "https://
     print(excess.loc[np.abs(excess) < tol].index.tolist())
     return finalcost
 
-# def nutrient_search(search_term, nutrients, cut = False):
-#     """
-#     Filters the nutrients DataFrame based on the presence or absence of a search term in the 'Ingredient description' column.
+def nutrient_search(search_term, nutrients, cut = False):
+    """
+    Filters the nutrients DataFrame based on the presence or absence of one or more search terms in the
+    'Ingredient description' column. When multiple terms are provided, the function checks that at least one
+    of the terms appears in the description.
 
-#     When 'cut' is True, the function returns only the rows where the 'Ingredient description' contains the given search term.
-#     When 'cut' is False, it returns only the rows where the 'Ingredient description' does NOT contain the search term.
+    If `cut` is False (default), the function returns only the rows where the 'Ingredient description' 
+    contains any of the specified search terms. If `cut` is True, it returns only the rows where the 
+    description does NOT contain any of the search terms.
 
-#     Parameters:
-#         search_term (str): The term to search for in the 'Ingredient description' column.
-#         nutrients (pd.DataFrame): The DataFrame containing nutrient data with an 'Ingredient description' column.
-#         cut (bool, optional): Determines the filtering mode. If True, select rows containing the search term.
-#                               If False (default), select rows that do not contain the search term.
+    Parameters:
+        search_term (str or list of str): A single term or a list of terms to search for in the 
+            'Ingredient description' column.
+        nutrients (pd.DataFrame): The DataFrame containing nutrient data with an 'Ingredient description' column.
+        cut (bool, optional): Determines the filtering mode. If False (default), select rows containing 
+            any of the search terms. If True, select rows that do NOT contain any of the search terms.
 
-#     Returns:
-#         pd.DataFrame: The filtered DataFrame based on the specified condition.
-#     """
-#     if cut:
-#         return nutrients[nutrients['Ingredient description'].str.contains(search_term)]
-#     else:
-#         return nutrients[~nutrients['Ingredient description'].str.contains(search_term)]
+    Returns:
+        pd.DataFrame: The filtered DataFrame based on the specified condition.
+    """
+    if isinstance(search_term, list):
+        pattern = '|'.join(term.lower() for term in search_term)
+    else:
+        pattern = search_term.lower()
+    
+    if cut:
+        return nutrients[~nutrients['Ingredient description'].str.contains(pattern, regex=True)]
+    else:
+        return nutrients[nutrients['Ingredient description'].str.contains(pattern, regex=True)]
