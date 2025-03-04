@@ -102,6 +102,90 @@ def format_id(id,zeropadding=0):
         return id.split('.')[0].strip().zfill(zeropadding)
     except ValueError:
         return None
+# quicksolvers didnt cut significant enough time
+# def setupsolvequick(sex, age,recipes, nutrients, bmin, bmax, data_url = "https://docs.google.com/spreadsheets/d/1xqixhrAoDq9rWJf_FC3Y2eXdd010DTLPCS7JJMCfwP8/edit?usp=sharing"):
+#     recipes = (recipes
+#                .assign(parent_foodcode = lambda df: df["parent_foodcode"].apply(format_id),
+#                        ingred_code = lambda df: df["ingred_code"].apply(format_id))
+#                .rename(columns={"parent_desc": "recipe"}))
+    
+#     nutrition = (nutrients
+#                  .assign(ingred_code = lambda df: df["ingred_code"].apply(format_id)))
+    
+#     #display(nutrition.head())
+#     #nutrition.columns
+#     # commented out example ->
+#     # recipes[recipes["recipe"].str.contains("Vegetable lasagna", case=False)]
+#     # normalize weights to percentage terms. 
+#     recipes['ingred_wt'] = recipes['ingred_wt']/recipes.groupby(['parent_foodcode'])['ingred_wt'].transform("sum")
+#     # we're going to extend the recipes data frame to include the nutrient profiles of its ingredients (in 100g)
+#     df = recipes.merge(nutrition, how="left", on="ingred_code")
+#     # multiply all nutrients per 100g of an ingredient by the weight of that ingredient in a recipe.
+#     numeric_cols = list(df.select_dtypes(include=["number"]).columns)
+#     numeric_cols.remove("ingred_wt")
+#     df[numeric_cols] = df[numeric_cols].mul(df["ingred_wt"], axis=0)
+#     # sum nutrients of food codes (over the multiple ingredients)
+#     # python tip: one can merge dictionaries dict1 dict2 using **, that is: dict_merge = {**dict1, **dict2}. The ** effectively "unpacks" the key value pairs in each dictionary
+#     df = df.groupby('parent_foodcode').agg({**{col: "sum" for col in numeric_cols},
+#                                             "recipe": "first"})
+#     df.index.name = "recipe_id"
+#     food_names = df["recipe"]
+#     #df.head()
+#     #AT this point food and nutrient data has been solved for
+#     #moving to prices now
+#     prices = read_sheets(data_url, sheet="prices")[["food_code", "year", "price"]]
+#     prices["food_code"] = prices["food_code"].apply(format_id)
+#     prices = prices.set_index(["year", "food_code"])
+#     #print(prices.index.levels[0])
+    
+#     # we'll focus on the latest price data
+#     prices = prices.xs("2017/2018", level="year")
+    
+#     # drop rows of prices where the price is "NA"
+#     prices = prices.dropna(subset="price")    
+#     common_recipes = df.index.intersection(prices.index)
+    
+#     # python tip: given a list of indices, "loc" both subsets and sorts. 
+#     df = df.loc[common_recipes]
+#     prices = prices.loc[common_recipes]
+    
+#     # lets remap the price dataframe index to be the actual food names.
+#     prices.index = prices.index.map(food_names)
+    
+#     A_all = df.T
+#     return A_all, prices
+#     #print(prices.head())
+#     #print(A_all.head())
+    
+# def quick_solver_agesex_analysis(A_all, prices, bmin, bmax, sex, age):
+#     """
+#     quick_solver_agesex_analysis(A_all, prices, bmin, bmax)
+#     Takes two inputs from setupsolvequick along with nutrition outputs. This function is made to just do the solving  piece, making it simple to do quicker comparisons across ages and genders. To change recipe information however you need to update the setupsolvequick arguments.
+#     """
+#     #putting it together -> this is where we could split this up because the above pieces only need to run once
+#     Amin = A_all.reindex(bmin.index).dropna(how='all')
+#     Amax = A_all.reindex(bmax.index).dropna(how='all')
+    
+#     b = pd.concat([bmin, -bmax])
+#     A = pd.concat([Amin, -Amax])
+    
+#     #solve
+#     p = prices
+#     tol = 1e-6 # Numbers in solution smaller than this (in absolute value) treated as zeros
+#     result = lp(p, -A, -b, method='highs')
+#     finalcost = f"{result.fun:.2f}"
+#     print(f"Cost of diet for {sex}'s of age {age} is ${finalcost} per day.")
+#     diet = pd.Series(result.x,index=prices.index)
+#     print("\nThe diet will consist of (in 100s of grams or milliliters):")
+#     print(round(diet[diet >= tol], 2))
+#     tab = pd.DataFrame({"Outcome":A.to_numpy()@diet.to_numpy(),"Recommendation":np.abs(b)})
+#     print("\nWith the following nutritional outcomes of interest:")
+#     print(tab)
+#     print("\nConstraining nutrients are:")
+#     excess = tab.diff(axis=1).iloc[:,1]
+#     print(excess.loc[np.abs(excess) < tol].index.tolist())
+#     return finalcost
+
 
 def solvercomplete(sex, age,recipes, nutrients, bmin, bmax, data_url = "https://docs.google.com/spreadsheets/d/1xqixhrAoDq9rWJf_FC3Y2eXdd010DTLPCS7JJMCfwP8/edit?usp=sharing"):
     """
@@ -254,6 +338,7 @@ def nutrient_search(search_term, nutrients, cut = False):
     Returns:
         pd.DataFrame: The filtered DataFrame based on the specified condition.
     """
+    nutrients['Ingredient description'] = nutrients['Ingredient description'].str.lower()
     if isinstance(search_term, list):
         pattern = '|'.join(term.lower() for term in search_term)
     else:
