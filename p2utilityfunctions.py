@@ -68,7 +68,7 @@ def activity(age, sex, activity_level):
                 ager = age_range
         return activities.loc[ager, f"{sex} - {activity_level}"]
     else:
-        return activities.loc[ager, f"{sex} - {activity_level}"]
+        return activities.loc[f'{age}', f"{sex} - {activity_level}"]
 
 
 def find_age_range(age):
@@ -210,7 +210,7 @@ def solvercomplete(sex, age,recipes, nutrients, bmin, bmax, data_url = "https://
     
     #print(prices.head())
     #print(A_all.head())
-    #putting it together
+    #putting it together -> this is where we could split this up because the above pieces only need to run once
     Amin = A_all.reindex(bmin.index).dropna(how='all')
     Amax = A_all.reindex(bmax.index).dropna(how='all')
     
