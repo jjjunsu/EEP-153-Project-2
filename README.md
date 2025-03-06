@@ -20,3 +20,4 @@ This repository contains all materials and code related to our project for ENVEC
 | **Junsu Yi**    | yijunsu@berkeley.edu       | jjjunsu |  
 | **Misato Okamoto** | misato3310@berkeley.edu | okamotomisato |  
 | **Cortez Rush** | crush2003@berkeley.edu     | crush-55 |  
+<img width="302" alt="MR_Menu" src="https://github.com/user-attachments/assets/b2dc3191-8051-4951-8cf4-a1e3c80c15c5" />
