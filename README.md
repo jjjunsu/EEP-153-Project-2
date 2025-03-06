@@ -4,6 +4,11 @@ GitHub Repository for ENVECON 153 Project 2 – Team Margaret Reid
 ## Overview  
 This repository contains all materials and code related to our project for ENVECON 153. This project is focused on determining the minimum-cost diet for incarcerated individuals across U.S. state prisons. We examine differences across age groups and gender while analyzing the nutritional adequacy and cost efficiency of these diets. Our goal is to explore potential improvements to prison meal planning that could enhance nutrition without exceeding budgetary constraints.
 
+### For Code Review
+- There are two relevant files to review that contain both our analysis approach and the helper functions we have developed. All others are variations of this or testing files and do not need to be addressed in code review:
+- p2utilityfunctions.py contains all helper functions, including our nutrient search function used to constrain the ingredient set, the complete optimizer function which solves the optimization problem under a given set of constraints and out nutrition function that produces relevant RDAs for age, sex, and a given activity level
+- proj2analysistemplate.ipynb is the workbook that contains our analysis approach and methodology. This notebook contains the workflow we used in concert with the helper functions we developed
+
 ## Project Goals  
 
 ### Primary Objectives:  
