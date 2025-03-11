@@ -9,8 +9,7 @@ def nutrition(age, sex, activity_level = False):
     takes the following
     age: integer from 2 through 120
     sex: either "F" for female or "M" for male
-    activity_level: "Sedentary", "Moderately
-Active", or "Active".
+    activity_level: "Sedentary", "Moderately Active", or "Active".
     outputs:
     bmin: A series object indexed by nutrition category with the series being the values respective to the age range from input.
     to the age range from input
