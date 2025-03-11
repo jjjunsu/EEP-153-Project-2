@@ -6,8 +6,8 @@ This repository contains all materials and code related to our project for ENVEC
 
 ### For Code Review
 - There are two relevant files to review that contain both our analysis approach and the helper functions we have developed. All others are variations of this are testing files and do not need to be addressed in the code review. The following two files are the basis of our analysis:
-- p2utilityfunctions.py contains all helper functions, including our nutrient search function used to constrain the ingredient set, the complete optimizer function which solves the optimization problem under a given set of constraints and out nutrition function that produces relevant RDAs for age, sex, and a given activity level
-- proj2analysistemplate.ipynb is the workbook that contains our analysis approach and methodology. This notebook contains the workflow we used in concert with the helper functions we developed
+- Functions.py contains all helper functions, including our nutrient search function used to constrain the ingredient set, the complete optimizer function which solves the optimization problem under a given set of constraints and out nutrition function that produces relevant RDAs for age, sex, and a given activity level
+- Template.ipynb is the workbook that contains our analysis approach and methodology. This notebook contains the workflow we used in concert with the helper functions we developed
 
 ## Project Goals  
 
