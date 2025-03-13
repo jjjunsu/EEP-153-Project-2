@@ -253,13 +253,14 @@ def nutrient_search(search_term, nutrients, cut = False):
     Returns:
         pd.DataFrame: The filtered DataFrame based on the specified condition.
     """
-    nutrients['Ingredient description'] = nutrients['Ingredient description'].str.lower()
+    nutrientcopy = nutrients.copy()
+    nutrientcopy['Ingredient description'] = nutrientcopy['Ingredient description'].str.lower()
     if isinstance(search_term, list):
         pattern = '|'.join(term.lower() for term in search_term)
     else:
         pattern = search_term.lower()
     
     if cut:
-        return nutrients[~nutrients['Ingredient description'].str.contains(pattern, regex=True)]
+        return nutrients[~nutrientcopy['Ingredient description'].str.contains(pattern, regex=True)]
     else:
-        return nutrients[nutrients['Ingredient description'].str.contains(pattern, regex=True)]
+        return nutrients[nutrientcopy['Ingredient description'].str.contains(pattern, regex=True)]
